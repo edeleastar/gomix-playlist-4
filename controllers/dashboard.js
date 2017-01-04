@@ -1,5 +1,6 @@
 'use strict';
 
+const uuid = require('uuid');
 const logger = require('../utils/logger');
 const playlistStore = require('../models/playlist-store');
 
@@ -21,6 +22,16 @@ const dashboard = {
     response.redirect('/dashboard');
   },
 
+  addPlaylist(request, response) {
+    const newPlayList = {
+      id: uuid(),
+      title: request.body.title,
+      songs: [],
+    };
+    logger.debug('Creating a new Playlist', newPlayList);
+    playlistStore.addPlaylist(newPlayList);
+    response.redirect('/dashboard');
+  },
 };
 
 module.exports = dashboard;

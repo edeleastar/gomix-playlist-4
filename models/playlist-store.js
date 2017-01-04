@@ -14,6 +14,10 @@ const playlistStore = {
     return _.find(this.playlistCollection, { id: id });
   },
 
+  addPlaylist(playlist) {
+    this.playlistCollection.push(playlist);
+  },
+
   removePlaylist(id) {
     _.remove(this.playlistCollection, { id: id });
   },
