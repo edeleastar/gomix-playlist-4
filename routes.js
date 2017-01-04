@@ -11,6 +11,7 @@ const about = require('./controllers/about.js');
 router.get('/', start.index);
 router.get('/dashboard', dashboard.index);
 router.get('/playlist/:id', playlist.index);
+router.get('/playlist/:id/deletesong/:songid', playlist.deleteSong);
 router.get('/about', about.index);
 
 module.exports = router;
