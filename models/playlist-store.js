@@ -22,6 +22,11 @@ const playlistStore = {
     const playlist = this.getPlaylist(id);
     _.remove(playlist.songs, { id: songId });
   },
+
+  addSong(id, song) {
+    const playlist = this.getPlaylist(id);
+    playlist.songs.push(song);
+  },
 };
 
 module.exports = playlistStore;
