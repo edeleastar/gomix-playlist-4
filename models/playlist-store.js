@@ -5,7 +5,7 @@ const JsonStore = require('./json-store');
 
 const playlistStore = {
 
-  store: new JsonStore('.data/playlist-store.json', { playlistCollection: [] }),
+  store: new JsonStore('./models/playlist-store.json', { playlistCollection: [] }),
   collection: 'playlistCollection',
 
   getAllPlaylists() {
