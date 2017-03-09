@@ -5,11 +5,15 @@ const JsonStore = require('./json-store');
 
 const playlistStore = {
 
-  store: new JsonStore('./models/playlist-store.json', { playlistCollection: [] }),
+  store: new JsonStore('.data/playlist-store.json', { playlistCollection: [] }),
   collection: 'playlistCollection',
 
   getAllPlaylists() {
     return this.store.findAll(this.collection);
+  },
+
+  getUserPlaylists(userid) {
+    return this.store.findBy(this.collection, { userid: userid });
   },
 
   getPlaylist(id) {
