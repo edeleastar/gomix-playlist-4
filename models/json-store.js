@@ -1,24 +1,26 @@
 'use strict';
 
 const low = require('lowdb');
-const fileAsync = require('lowdb/lib/file-async');
+const fileAsync = require('lowdb/lib/storages/file-async');
 
 class JsonStore {
   constructor(file, defaults) {
     this.db = low(file, { storage: fileAsync, });
-    this.db.defaults(defaults).value();
+    this.db.defaults(defaults).write();
   }
 
   add(collection, obj) {
-    this.db.get(collection).push(obj).last().value();
+    this.db.get(collection).push(obj).last().write();
   }
 
   remove(collection, obj) {
     this.db.get(collection).remove(obj).value();
+    this.write();
   }
 
   removeAll(collection) {
     this.db.get(collection).remove().value();
+    this.write();
   }
 
   findAll(collection) {
@@ -36,6 +38,10 @@ class JsonStore {
 
   findBy(collection, filter) {
     return this.db.get(collection).filter(filter).value();
+  }
+
+  write() {
+    this.db.write();
   }
 }
 

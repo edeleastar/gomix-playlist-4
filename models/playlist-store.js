@@ -36,12 +36,14 @@ const playlistStore = {
   addSong(id, song) {
     const playlist = this.getPlaylist(id);
     playlist.songs.push(song);
+    this.store.write();
   },
 
   removeSong(id, songId) {
     const playlist = this.getPlaylist(id);
     const songs = playlist.songs;
     _.remove(songs, { id: songId});
+    this.store.write();
   },
 };
 
